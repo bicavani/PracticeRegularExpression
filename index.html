@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+    function validateAccount(account) {
+        let accountRegexp = /^[a-z0-9_]{6,}/;
+        return accountRegexp.test(account);
+    }
+    console.log(validateAccount("bi_cavani_1"));
+    console.log(validateAccount("bi_c1"));
+    console.log(validateAccount("______"))
+    console.log(validateAccount(".@"))
+    console.log(validateAccount("abc12"))
+  </script>
+</body>
+</html>
