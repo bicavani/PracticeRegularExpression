@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object Date</title>
+</head>
+<body>
+  <script>
+    function UserDate(yourBirthDate) {
+        this.setArrDate = function () {
+            return this.arrDate = yourBirthDate.split("/");
+        };
+        this.setUserDay = function () {
+            return this.dd = parseInt(this.arrDate[0]);
+        };
+        this.setUserMonth = function () {
+            return this.mm = parseInt(this.arrDate[1]);
+        };
+        this.setUserYear = function () {
+            return this.yy = parseInt(this.arrDate[2]);
+        };
+        this.validateDate = function() {
+            this.setArrDate();
+            this.setUserDay();
+            this.setUserMonth();
+            this.setUserYear();
+            let dateFormat = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
+            if (dateFormat.test(yourBirthDate)) {
+                let dayOfMonths = [];
+                if ((this.yy % 4 === 0 && this.yy % 100 !== 0) || this.yy % 400 === 0) {
+                    dayOfMonths = [31,29,31,30,31,30,31,31,30,31,30,31];
+                }else {
+                    dayOfMonths = [31,28,31,30,31,30,31,31,30,31,30,31];
+                }
+                return this.dd <= dayOfMonths[this.mm - 1];
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    function caculateAge(yy, mm, dd) {
+        let age_Milliseconds = Date.now() - new Date(yy, mm, dd).getTime();
+        let age_day = Math.round(age_Milliseconds / 86400000);
+        let age_month = Math.round(age_day / 30.5);
+        let age_Year = Math.round(age_day/ 365);
+        console.log(age_day + " day", age_month + " month", age_Year + " year");
+    }
+
+    let userDate = new UserDate("08/08/1994");
+    if (userDate.validateDate()) {
+        caculateAge(userDate.setUserYear(), userDate.setUserMonth(), userDate.setUserDay())
+    } else console.log("invalid");
+
+  </script>
+</body>
+</html>

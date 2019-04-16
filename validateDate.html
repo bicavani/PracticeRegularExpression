@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>validateDate</title>
+</head>
+<body>
+  <script>
+    function checkFormat(textDate) {
+        let dateFormat = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
+        return dateFormat.test(textDate);
+    }
+    function validateDate(textDate) {
+        if (checkFormat(textDate)) {
+            let arrayDate = textDate.split("/");
+            let dd = parseInt(arrayDate[0]);
+            let mm = parseInt(arrayDate[1]);
+            let yy = parseInt(arrayDate[2]);
+            let dayOfMonths = [];
+            if (isLapYear(yy)) {
+                dayOfMonths = [31,29,31,30,31,30,31,31,30,31,30,31];
+            }else {
+                dayOfMonths = [31,28,31,30,31,30,31,31,30,31,30,31];
+            }
+            if (dd > dayOfMonths[mm - 1]) {
+                console.log("Invalid");
+            } else console.log("ok");
+        }
+        else {
+            console.log("Invalid date format")
+        }
+    }
+    function isLapYear(yy) {
+        return (yy % 4 === 0 && yy % 100 !== 0) || yy % 400 === 0;
+    }
+    let texDate = "29/02/2020";
+    validateDate(texDate);
+  </script>
+</body>
+</html>

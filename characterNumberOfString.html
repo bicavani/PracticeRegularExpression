@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>characterNumberOfString</title>
+</head>
+<body>
+  <script>
+    function countCharacter(inputText) {
+        let charFormat = /[a-zA-Z]/g;
+        let arrChar = inputText.match(charFormat);
+        return arrChar.length;
+    }
+    let text = "akei ie23@ aiARri.@#!";
+    console.log(countCharacter(text));
+  </script>
+</body>
+</html>

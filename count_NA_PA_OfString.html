@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Count NA PA Of String</title>
+</head>
+<body>
+  <script>
+    function isVowel(char) {
+        let vowelStr = "ueoaiUEOAI";
+        return vowelStr.search(char);
+    }
+    function countNA_PA(str) {
+        let arrChar = str.match(/[a-zA-Z]/g);
+        let countNA = 0;
+        let countPA = 0;
+        console.log(arrChar);
+        for (let i = 0; i < arrChar.length; i++) {
+            if (isVowel(arrChar[i]) !== (-1)) {
+                countNA++;
+            }else countPA++;
+        }
+        console.log("NA trong chuoi la: " + countNA);
+        console.log("PA trong chuoi la: " + countPA);
+    }
+    let str = "ib CAVAni @987.   # i lovEYou";
+    countNA_PA(str);
+    
+  </script>
+</body>
+</html>
